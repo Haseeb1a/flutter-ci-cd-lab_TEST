@@ -9,8 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -22,16 +23,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.24.3
           channel: stable
 
-      - name: Get packages
+      - name: Install packages
         run: flutter pub get
 
-      - name: Analyze
+      - name: Analyze code
         run: flutter analyze
 
-      - name: Test
+      - name: Run tests
         run: flutter test
 
       - name: Build APK
